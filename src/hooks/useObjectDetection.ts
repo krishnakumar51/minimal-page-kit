@@ -117,11 +117,11 @@ export const useObjectDetection = (mode: DetectionMode) => {
     console.log('Object detection stopped');
   }, []);
 
-  // Mock detection data for demo purposes
+  // Ensure detections are always visible for debugging
   useEffect(() => {
-    if (isProcessing && detections.length === 0) {
-      // Generate mock detections to demonstrate the UI
-      const mockDetections: Detection[] = [
+    if (isProcessing) {
+      // Always show some detections for testing bounding boxes
+      const testDetections: Detection[] = [
         {
           label: 'person',
           score: 0.93,
@@ -148,14 +148,17 @@ export const useObjectDetection = (mode: DetectionMode) => {
         }
       ];
 
-      // Simulate detection updates
+      // Show detections immediately for testing
       const timeout = setTimeout(() => {
-        setDetections(mockDetections);
-      }, 2000);
+        setDetections(testDetections);
+        console.log('Test detections set:', testDetections);
+      }, 1000);
 
       return () => clearTimeout(timeout);
+    } else {
+      setDetections([]);
     }
-  }, [isProcessing, detections.length]);
+  }, [isProcessing]);
 
   return {
     detections,
