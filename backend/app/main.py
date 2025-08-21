@@ -17,11 +17,11 @@ import cv2
 import numpy as np
 from io import BytesIO
 from PIL import Image
-
+import logging
 from .inference import ObjectDetector
 
 app = FastAPI(title="WebRTC VLM Detection API")
-
+logging.basicConfig(level=logging.INFO)
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
@@ -31,8 +31,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Initialize detector
 detector = ObjectDetector()
