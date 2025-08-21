@@ -235,26 +235,27 @@ if [[ "$SHOW_LOGS" == true ]]; then
     docker-compose logs
 fi
 
-# Save cleanup function
+# Save cleanup function for ngrok only
 cleanup() {
     echo ""
     echo "🧹 Shutting down..."
-    docker-compose down
     if [[ "$USE_NGROK" == true ]] && [[ ! -z "$NGROK_PID" ]]; then
         kill $NGROK_PID 2>/dev/null || true
+        echo "✅ Ngrok stopped"
     fi
     echo "✅ Cleanup complete"
 }
 
-# Register cleanup function
-trap cleanup EXIT
-
-# Keep script running for ngrok
+# Keep script running for ngrok or exit cleanly for background mode
 if [[ "$USE_NGROK" == true ]] && [[ ! -z "$NGROK_URL" ]]; then
+    # Register cleanup function only for ngrok mode
+    trap cleanup EXIT
     echo "🔄 System running... Press Ctrl+C to stop"
     wait
 else
     echo "🔄 System is running in background"
     echo "   Use 'docker-compose logs -f' to view logs"
     echo "   Use 'docker-compose down' to stop"
+    echo ""
+    echo "✅ Containers will continue running until manually stopped"
 fi
