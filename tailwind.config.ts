@@ -52,6 +52,10 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				gentle: 'hsl(var(--gentle-border))',
+				subtle: 'hsl(var(--subtle-bg))',
+				soft: 'hsl(var(--text-soft))',
+				lighter: 'hsl(var(--text-lighter))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +66,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			boxShadow: {
+				soft: 'var(--soft-shadow)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

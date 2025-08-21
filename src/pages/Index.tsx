@@ -2,11 +2,16 @@
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
+      <main className="text-center max-w-2xl mx-auto space-y-8">
+        <h1 className="text-6xl font-light tracking-tight text-foreground">
+          Simple
+        </h1>
+        <p className="text-xl text-soft leading-relaxed">
+          Clean. Minimal. Beautiful.
+        </p>
+        <div className="w-16 h-px bg-gentle mx-auto"></div>
+      </main>
     </div>
   );
 };
